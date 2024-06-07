@@ -1,0 +1,12 @@
+name: Schedule
+
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+
+jobs:
+  hello:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 時刻表示
+        run: date
