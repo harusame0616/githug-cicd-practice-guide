@@ -1,0 +1,21 @@
+name: Manual Choice
+
+on:
+  workflow_dispatch:
+    inputs:
+      greeting:
+        type: choice
+        options:
+          - Hello
+          - Hi
+          - Hey
+        default: Hey
+        required: true
+        description: A cheerful word
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Say hello
+        run: echo "${{ github.event.inputs.greeting }}, world!"
