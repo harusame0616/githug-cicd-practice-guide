@@ -1,0 +1,10 @@
+name: Injection
+
+on: issue_comment
+
+jobs:
+  echo:
+    runs-on: ubuntu-latest
+    steps:
+      - name: echo
+        run: echo ${{github.event.comment.body}}
