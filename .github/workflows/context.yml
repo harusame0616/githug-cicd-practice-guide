@@ -1,0 +1,40 @@
+name: Context
+
+on:
+  push:
+
+jobs:
+  print-context:
+    runs-on: ubuntu-latest
+    steps:
+      - name: github コンテキスト印字
+        run: echo "${{ toJson(github) }}"
+      - name: env コンテキストの印字
+        run: echo "${{ toJson(env) }}"
+      - name: vars コンテキストの印字
+        run: echo "${{ toJson(vars) }}"
+      - name: job コンテキストの印字
+        run: echo "${{ toJson(job) }}"
+      #   - name: jobs コンテキストの印字
+      #     run: echo "${{ toJson(jobs) }}"
+      - name: steps コンテキストの印字
+        run: echo "${{ toJson(steps) }}"
+      - name: runner コンテキストの印字
+        run: echo "${{ toJson(runner) }}"
+      - name: secrets コンテキストの印字
+        run: echo "${{ toJson(secrets) }}"
+      - name: strategy コンテキストの印字
+        run: echo "${{ toJson(strategy) }}"
+      - name: matrix コンテキストの印字
+        run: echo "${{ toJson(matrix) }}"
+      - name: needs コンテキストの印字
+        run: echo "${{ toJson(needs) }}"
+      - name: inputs コンテキストの印字
+        run: echo "${{ toJson(inputs) }}"
+
+  need-job:
+    runs-on: ubuntu-latest
+    needs: print-context
+    steps:
+      - name: x
+        run: echo "x"
