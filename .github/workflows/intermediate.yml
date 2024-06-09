@@ -1,0 +1,12 @@
+name: Intermediate Environment Variable
+
+on: issue_comment
+
+jobs:
+  echo:
+    runs-on: ubuntu-latest
+    steps:
+      - name: echo
+        run: echo $COMMENT
+        env:
+          COMMENT: ${{github.event.comment.body}}
