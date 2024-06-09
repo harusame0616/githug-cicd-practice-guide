@@ -1,0 +1,19 @@
+name: Github Output
+
+on: push
+
+jobs:
+  share:
+    runs-on: ubuntu-latest
+    steps:
+      - name: output to file
+        run: echo "Hello, World!" > ${{ github.workspace }}/output.txt
+      - name: print from file
+        run: cat ${{ github.workspace }}/output.txt
+      - name: output to output result
+        id: output_result
+        run: echo "result=Hello" >> "${GITHUB_OUTPUT}"
+      - name: print from output result
+        run: echo "${RESULT}"
+        env:
+          RESULT: ${{ steps.output_result.outputs.result }}
