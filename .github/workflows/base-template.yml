@@ -1,0 +1,21 @@
+name: Base template
+
+on: push
+
+# 多重起動を抑制する
+concurrency:
+  group: ${{github.workflow}}-${{ github.ref }}
+  cancel-in-progress: true
+
+defaults:
+  run:
+    # pipefail が有効になるため、デフォルトシェルは必ず指定
+    shell: bash
+
+jobs:
+  sleep:
+    timeout-minutes: 1 # タイムアウトは必ず設定する
+    runs-on: ubuntu-latest
+    steps:
+      - name: sleep
+        run: sleep 120
