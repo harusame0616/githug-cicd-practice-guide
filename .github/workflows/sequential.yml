@@ -1,0 +1,29 @@
+name: Sequential jobs
+
+on: push
+
+jobs:
+  first:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "First job"
+  second:
+    needs: first
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Second job"
+  third-1:
+    needs: second
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Third-1 job"
+  third-2:
+    needs: second
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Third-2 job"
+  fourth:
+    needs: [third-1, third-2]
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Fourth job"
