@@ -1,0 +1,19 @@
+name: Environment
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        type: choice
+        options:
+          - production
+          - staging
+
+jobs:
+  print:
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.environment }}
+    steps:
+      - run: echo "${CONNECTION}"
+        env:
+          CONNECTION: ${{ vars.CONNECTION }}
